@@ -68,12 +68,12 @@ public class DepartmentFormController implements Initializable {
 		Department obj = new Department();
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
 		obj.setName(txtName.getText());
-		return null;
+		return obj;
 	}
 
 	@FXML
-	public void onBtnCancelAction () {
-		System.out.println("onBtnCancelAction");
+	public void onBtnCancelAction (ActionEvent event) {
+		Utils.currentStage(event).close();
 	}
 	
 	@Override
@@ -83,7 +83,7 @@ public class DepartmentFormController implements Initializable {
 	
 	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
-		Constraints.setTextFieldMaxLength(txtName, 30);
+		Constraints.setTextFieldMaxLength(txtName, 40);
 	}
 	
 	public void updateFormData() {
@@ -91,7 +91,7 @@ public class DepartmentFormController implements Initializable {
 			throw new IllegalStateException("Entity was null");
 		}
 		txtId.setText(String.valueOf(entity.getId()));
-		txtName.setText(String.valueOf(entity.getName()));	
+		txtName.setText(entity.getName());	
 	}
 
 }
